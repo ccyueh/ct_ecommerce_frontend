@@ -65,6 +65,13 @@ class Checkout extends Component {
     this.getCart();
   }
 
+  componentDidUpdate(prevProps) {
+    this.getCart();
+    if (this.props.cart != prevProps.cart) {
+      this.getCart();
+    }
+  }
+
   render() {
     return (
       <div className="container">

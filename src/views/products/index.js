@@ -14,7 +14,6 @@ class Products extends Component {
   }
 
   loadProducts = async(e) => {
-    console.log(localProducts);
     let URL = 'http://localhost:5000/api/add';
 
     for (let i in localProducts) {
@@ -30,12 +29,48 @@ class Products extends Component {
         }
       });
     }
-    this.setState({ 'products': localProducts });
   }
 
-  componentWillMount() {
+  getProducts = async(e) => {
+    let URL = 'http://localhost:5000/api/retrieve';
+    let response = await fetch(URL, {
+      "method": "GET",
+      "headers": {
+        "Content-Type": "application/json",
+        "table": "products"
+      }
+    });
+
+    let data = await response.json();
+    if (data.products) {
+      this.setState({ 'products': data.products });
+    } else {
+      alert(data.error);
+    }
+  }
+
+  addItem = async(id) => {
+    console.log(id);
+    let URL = 'http://localhost:5000/api/add';
+
+    let response = await fetch(URL, {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "product_id": id
+      }
+    });
+    let data = await response.json();
+    if (data.success) {
+      alert(data.success);
+    } else {
+      alert(data.error);
+    }
+  }
+
+  componentDidMount() {
     //this.loadProducts();
-    this.setState({ 'products': localProducts });
+    this.getProducts();
   }
 
   render() {
@@ -44,7 +79,10 @@ class Products extends Component {
         <h1 className="text-center">Products</h1>
         <div className="row">
           <div className="col-md-8">
-            <ProductRows products={this.state.products} />
+            <ProductRows
+              products={this.state.products}
+              addItem={this.addItem}
+            />
           </div>
           <div className="col-md-4">
             <Checkout />

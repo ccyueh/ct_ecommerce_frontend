@@ -22,6 +22,16 @@ function CartTable(props) {
             />
           )
         }
+        <tr id="total">
+          <td>
+            <b>Total:</b>
+          </td>
+          <td colSpan="2">
+            ${props.cart[0] &&
+              props.cart.reduce((s,a) =>
+                s + Number(a.price), 0).toFixed(2)}
+          </td>
+        </tr>
       </tbody>
     </table>
   );

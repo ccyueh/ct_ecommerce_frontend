@@ -10,6 +10,7 @@ function ProductRows(props) {
           <ProductCard
             key={product.product_id}
             product={product}
+            addItem={props.addItem}
           />
         )
       }
