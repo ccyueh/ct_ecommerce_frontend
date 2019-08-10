@@ -13,7 +13,6 @@ class Checkout extends Component {
 
   getCart = async(e) => {
     let URL = 'http://localhost:5000/api/retrieve';
-    console.log(URL);
     let response = await fetch(URL, {
       "method": "GET",
       "headers": {
@@ -23,7 +22,6 @@ class Checkout extends Component {
     });
 
     let data = await response.json();
-    console.log(data);
     if (data.cart) {
       this.setState({ 'cart': data.cart });
     } else {
@@ -72,7 +70,6 @@ class Checkout extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1>Checkout</h1>
             <CartTable
               cart={this.state.cart}
               deleteItem={this.deleteItem}
