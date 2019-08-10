@@ -2,6 +2,10 @@
   margin: 50px auto;
 }
 
-h1 {
+h1, h2 {
   margin: 50px auto;
+}
+
+label {
+  margin-top: 1rem;
 }
