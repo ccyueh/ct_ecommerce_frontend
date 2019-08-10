@@ -3,6 +3,7 @@ import './index.css';
 import ProductRows from '../../components/productRows';
 import Checkout from '../checkout';
 import localProducts from '../../products.json';
+import fetchProducts from './fetchProducts.js';
 
 class Products extends Component {
   constructor() {
@@ -32,25 +33,11 @@ class Products extends Component {
   }
 
   getProducts = async(e) => {
-    let URL = 'http://localhost:5000/api/retrieve';
-    let response = await fetch(URL, {
-      "method": "GET",
-      "headers": {
-        "Content-Type": "application/json",
-        "table": "products"
-      }
-    });
-
-    let data = await response.json();
-    if (data.products) {
-      this.setState({ 'products': data.products });
-    } else {
-      alert(data.error);
-    }
+    let products = await fetchProducts();
+    this.setState({ products })
   }
 
   addItem = async(id) => {
-    console.log(id);
     let URL = 'http://localhost:5000/api/add';
 
     let response = await fetch(URL, {
