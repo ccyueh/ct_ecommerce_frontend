@@ -1,5 +1,3 @@
-import React from 'react';
-
 const fetchProducts = async(e) => {
   let URL = 'http://localhost:5000/api/retrieve';
 

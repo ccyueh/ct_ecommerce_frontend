@@ -3,11 +3,12 @@ import './index.css';
 import CartTable from '../../components/cartTable';
 
 class Checkout extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
-      'cart': []
+      'cart': [],
+      'change': props.change
     }
   }
 
@@ -66,13 +67,13 @@ class Checkout extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.getCart();
-    if (this.props.cart != prevProps.cart) {
+    if (this.props.change != prevProps.change) {
       this.getCart();
     }
   }
 
   render() {
+    console.log(this.state.change);
     return (
       <div className="container">
         <div className="row">

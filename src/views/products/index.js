@@ -10,7 +10,8 @@ class Products extends Component {
     super();
 
     this.state = {
-      'products': []
+      'products': [],
+      'change': 'no'
     }
   }
 
@@ -50,6 +51,8 @@ class Products extends Component {
     let data = await response.json();
     if (data.success) {
       alert(data.success);
+      this.setState({ 'change': 'yes' })
+      this.setState({ 'change': 'no' })
     } else {
       alert(data.error);
     }
@@ -72,7 +75,7 @@ class Products extends Component {
             />
           </div>
           <div className="col-md-4">
-            <Checkout />
+            <Checkout change={this.state.change} />
           </div>
         </div>
       </div>

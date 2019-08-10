@@ -16,7 +16,7 @@ function App() {
           render={() =>
             <div>
               <h1 className="text-center">Checkout</h1>
-              <Checkout />
+              <Checkout change="no" />
               </div>
           }
         />
